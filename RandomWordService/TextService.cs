@@ -2,6 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,12 +13,14 @@ namespace RandomWordService
 
     public interface ITextService
     {
-         Task CreateWord();
+         void CreateWord();
     }
     public class TextService : ITextService
     {
         private readonly TextContext _context;
         private readonly ILogger<TextService> _logger;
+
+
         public TextService( ILogger<TextService> logger , TextContext context ) {
         
            _logger= logger;
@@ -25,7 +28,7 @@ namespace RandomWordService
         }
 
 
-        public async Task CreateWord()
+        public void  CreateWord()
         {
             var text = new Text();
 
@@ -50,9 +53,7 @@ namespace RandomWordService
             _context.Add(text);
             _context.SaveChanges();
 
-
-            await Task.Run(CreateWord);
-            _logger.LogInformation("Word created.");
+            _logger.LogInformation("Word created and saved db.");
 
         }
     }
