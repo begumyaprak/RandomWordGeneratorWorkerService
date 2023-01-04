@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WindowsService;
+using RandomWordService;
 
 #nullable disable
 
 namespace RandomWordService.Migrations
 {
     [DbContext(typeof(TextContext))]
-    [Migration("20230103121528_init")]
+    [Migration("20230104143719_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -24,7 +24,7 @@ namespace RandomWordService.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("WindowsService.Text", b =>
+            modelBuilder.Entity("RandomWordService.Text", b =>
                 {
                     b.Property<int>("TextId")
                         .ValueGeneratedOnAdd()
